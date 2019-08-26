@@ -3,3 +3,4 @@ class Game:
         self.name = name
         self.path = path
 
+games = []
