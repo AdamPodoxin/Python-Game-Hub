@@ -20,4 +20,8 @@ def promptForAddGame():
     name = input("Game name: ")
     path = input("Game path: ")
 
+    addedGame = Game(name, path)
+    games.append(addedGame)
+    print("Added game " + addedGame.name + " with path " + addedGame.path)
+
 promptForCommand()
