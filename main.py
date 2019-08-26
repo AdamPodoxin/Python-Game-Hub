@@ -12,9 +12,14 @@ def promptForCommand():
         showListOfCommands()
     elif (command == "add game"):
         promptForAddGame()
+    elif (command == "remove game"):
+        promptForRemoveGame()
 
 def showListOfCommands():
     print("'add game' - adds a game to the hub")
+    print("'remove game' - removes a game from the hub")
+    
+    promptForCommand()
 
 def promptForAddGame():
     name = input("Game name: ")
@@ -23,5 +28,20 @@ def promptForAddGame():
     addedGame = Game(name, path)
     games.append(addedGame)
     print("Added game " + addedGame.name + " with path " + addedGame.path)
+
+    promptForCommand()
+
+def promptForRemoveGame():
+    name = input("Enter name of game to remove: ")
+    
+    for game in games:
+        if(game.name == name):
+            games.remove(game)
+            print("Removed game " + name)
+            promptForCommand()
+            break
+
+    print("Game " + name + " does not exist")
+    promptForCommand()  
 
 promptForCommand()
