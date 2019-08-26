@@ -1,3 +1,5 @@
+import subprocess
+
 class Game:
     def __init__(self, name, path):
         self.name = name
@@ -14,10 +16,13 @@ def promptForCommand():
         promptForAddGame()
     elif (command == "remove game"):
         promptForRemoveGame()
+    elif (command == "play game"):
+        promptForPlayGame()
 
 def showListOfCommands():
     print("'add game' - adds a game to the hub")
     print("'remove game' - removes a game from the hub")
+    print("'play game' - opens a game from the hub")
     
     promptForCommand()
 
@@ -39,9 +44,20 @@ def promptForRemoveGame():
             games.remove(game)
             print("Removed game " + name)
             promptForCommand()
-            break
+            return
 
     print("Game " + name + " does not exist")
-    promptForCommand()  
+    promptForCommand() 
+
+def promptForPlayGame():
+    name = input("Enter name of game to play: ")
+
+    for game in games:
+        if(game.name == name):
+            subprocess.call([game.path])
+            return
+
+    print("Game " + name + " does not exist")
+    promptForCommand()
 
 promptForCommand()
