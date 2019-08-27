@@ -1,4 +1,4 @@
-import subprocess
+import subprocess, os
 
 class Game:
     def __init__(self, name, path):
@@ -32,6 +32,9 @@ def promptForAddGame():
 
     addedGame = Game(name, path)
     games.append(addedGame)
+            
+    saveFile()
+
     print("Added game " + addedGame.name + " with path " + addedGame.path)
 
     promptForCommand()
@@ -43,6 +46,8 @@ def promptForRemoveGame():
         if(game.name == name):
             games.remove(game)
             print("Removed game " + name)
+
+            saveFile()
             promptForCommand()
             return
 
@@ -59,5 +64,12 @@ def promptForPlayGame():
 
     print("Game " + name + " does not exist")
     promptForCommand()
+
+def saveFile():
+    file = open(os.getenv("APPDATA") + "/Python Game Hub/games.txt", "w+")
+    for game in games:
+        file.write("name:" + game.name + "\n")
+        file.write("path:" + game.path + "\n")
+
 
 promptForCommand()
