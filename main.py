@@ -18,11 +18,14 @@ def promptForCommand():
         promptForRemoveGame()
     elif (command == "play game"):
         promptForPlayGame()
+    elif (command == "show games"):
+        showGames()
 
 def showListOfCommands():
     print("'add game' - adds a game to the hub")
     print("'remove game' - removes a game from the hub")
     print("'play game' - opens a game from the hub")
+    print("'show games' - shows all games in the hub")
     
     promptForCommand()
 
@@ -64,6 +67,13 @@ def promptForPlayGame():
 
     print("Game " + name + " does not exist")
     promptForCommand()
+
+def showGames():
+    for game in games:
+        print(game.name)
+        print(game.path + "\n")
+
+        promptForCommand()
 
 def saveFile():
     file = open(os.getenv("APPDATA") + "/Python Game Hub/games.txt", "w+")
