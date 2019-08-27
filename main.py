@@ -89,12 +89,9 @@ def loadFile():
         if("ENDGAME" in line):
             games.append(game)
             game = Game("", "")
-            print("ENDGAME")
         elif("name:" in line):
-            print("name")
             game.name = line.replace("name:", "")
         elif("path:" in line):
-            print("path")
             game.path = line.replace("path:", "")
 
 loadFile()
