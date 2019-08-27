@@ -73,7 +73,7 @@ def showGames():
         print(game.name)
         print(game.path + "\n")
 
-        promptForCommand()
+    promptForCommand()
 
 def saveFile():
     file = open(os.getenv("APPDATA") + "/Python Game Hub/games.txt", "w+")
@@ -84,14 +84,17 @@ def saveFile():
 
 def loadFile():
     file = open(os.getenv("APPDATA") + "/Python Game Hub/games.txt", "r").readlines()
+    game = Game("", "")
     for line in file:
-        game = Game("", "")
-
-        if(line == "ENDGAME"):
+        if("ENDGAME" in line):
             games.append(game)
+            game = Game("", "")
+            print("ENDGAME")
         elif("name:" in line):
+            print("name")
             game.name = line.replace("name:", "")
         elif("path:" in line):
+            print("path")
             game.path = line.replace("path:", "")
 
 loadFile()
