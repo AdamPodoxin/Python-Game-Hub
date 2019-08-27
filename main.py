@@ -70,6 +70,19 @@ def saveFile():
     for game in games:
         file.write("name:" + game.name + "\n")
         file.write("path:" + game.path + "\n")
+        file.write("ENDGAME\n")
 
+def loadFile():
+    file = open(os.getenv("APPDATA") + "/Python Game Hub/games.txt", "r").readlines()
+    for line in file:
+        game = Game("", "")
 
+        if(line == "ENDGAME"):
+            games.append(game)
+        elif("name:" in line):
+            game.name = line.replace("name:", "")
+        elif("path:" in line):
+            game.path = line.replace("path:", "")
+
+loadFile()
 promptForCommand()
